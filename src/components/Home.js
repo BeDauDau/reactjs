@@ -1,7 +1,9 @@
 import "./Home.css"
 import memberLogo from "../img/content/bandmember.jpg"
 import mapLogo from "../img/map.jpg"
-import { FaBeer,FaFacebookSquare,FaInstagramSquare,FaYoutube, FaTwitter,FaLinkedin,FaPinterestSquare,FaLocationArrow,FaPhoneSquareAlt,FaMailBulk} from 'react-icons/fa'
+import { FaBeer,FaFacebookSquare,FaInstagramSquare,FaYoutube, FaTwitter,FaLinkedin,FaPinterestSquare,FaLocationArrow,FaPhoneSquareAlt,FaMailBulk,FaArrowDown} from 'react-icons/fa'
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { Outlet, Link, Route, Routes } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -14,17 +16,24 @@ const Home = () => {
             <li><a href="#contact">Contact</a></li>
             <li>
               <a href="#">
-                function
-                <i className="nav-arrow-down ti-angle-down" />
+                function <MdKeyboardArrowDown/>
               </a>
               <ul className="subnav">
-                <li><a className="subnav-padding" href="./addstudent.html">Nhận học sinh</a></li>
+                {/*<li><a className="subnav-padding" href="./addstudent.html">Nhận học sinh</a></li>
                 <li><a className="subnav-padding" href="./classlist.html">Lập danh sách lớp</a></li>
                 <li><a className="subnav-padding" href="./search.html">Tra cứu học sinh</a></li>
                 <li><a className="subnav-padding" href="./subjectscore.html">Bảng điểm môn học</a></li>
                 <li><a className="subnav-padding" href="./semesterreport.html">Lập bảng báo cáo kì</a></li>
                 <li><a className="subnav-padding" href="./classreport.html">Lập bảng báo cáo môn</a></li>
-                <li><a className="subnav-padding" href="./regulation.html">Danh sách quy định</a></li>
+                <li><a className="subnav-padding" href="./regulation.html">Danh sách quy định</a></li>*/}
+                 <Link to="/addStudent">Nhận học sinh</Link>
+                 <Link to="/classList">Lập danh sách lớp</Link>
+                 <Link to="/search">Tra cứu học sinh</Link>
+                 <Link to="/subjectScore">Bảng điểm môn học</Link>
+                 <Link to="/semesterReport">Lập bảng báo cáo kì</Link>
+                 <Link to="/classReport">Lập bảng báo cáo môn</Link>
+                 <Link to="/regulation">Danh sách quy định</Link>
+
               </ul>
             </li>
           </ul>
