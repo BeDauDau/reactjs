@@ -21,7 +21,7 @@
     font-size: 0.75em;
 }
 .container {
-    position: relative;
+
     color: rgb(3, 1, 1);
     /*Note, you can change the color to your choice depending on your 
     image and what color blends with it*/
@@ -37,11 +37,9 @@
     content: "";
     opacity: 0.8;
     background: rgb(26, 31, 41) url("../img/slider/khtn.jpg") top center / cover no-repeat;
-    /*background-blend-mode: luminosity;*/
     filter: blur(5px);
-    /* also change the blend mode to what suits you, from darken, to other 
-    many options as you deem fit*/
     background-size: cover;
+    background-color: transparent;
     top: 0;
     left: 0;
     right: 0;

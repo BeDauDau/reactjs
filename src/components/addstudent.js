@@ -1,19 +1,37 @@
-import "./Home.css"
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { Outlet, Link, Route, Routes } from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import "./addstudent.css"
-
+import {Link} from "react-router-dom";
+import { MdKeyboardArrowDown } from "react-icons/md";
+  
 const Addstudent = () => {
-  return (
-      <div id="main">
-        {/*Begin nav*/}
-        <div id="header">
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = event => {
+    // 👇️ toggle isActive state on click
+    setIsActive(current => !current);
+  };
+  const [isActive2, setIsActive2] = useState(false);
+
+  const handleClick2 = event => {
+    // 👇️ toggle isActive state on click
+    setIsActive2(current => !current);
+  };
+  const [isActive3, setIsActive3] = useState(false);
+
+  const handleClick3 = event => {
+    // 👇️ toggle isActive state on click
+    setIsActive3(current => !current);
+  };
+    return (
+
+        <div className="">
+            <div id="header">
           <ul id="nav">
             <li><a href="/login">Home Page</a></li>
             <li><a href="#gr">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li>
-              <a href="#">
+              <a className="">
                 function <MdKeyboardArrowDown/>
               </a>
               <ul className="subnav">
@@ -37,43 +55,94 @@ const Addstudent = () => {
           </ul>
           {/*End nav*/}
           {/*Begin sign-out*/}
-          <div className="signout-btn">
-            <i className="signout-icon">Logout</i>
-          </div>
-          <div id="mobile-menu" className="mobile-menu-btn">
-            <i className="menu-icon ti-menu" />
-          </div>
+                <div className="signout-btn">
+                    <Link to="/">
+                    <i className="signout-icon">Logout</i>
+                    </Link>
+                </div>
+          
+                <div id="mobile-menu" className="mobile-menu-btn">
+                    <i className="menu-icon ti-menu" />
+                </div>
           {/*End sign-out*/}
-        </div>
-        <div class="container">
-          <h1>Nhận học sinh</h1>
-          <button id="add-student-btn" class="action-btn">Thêm học sinh</button>
-          <button id="delete-student-btn" class="action-btn">Xóa học sinh</button>
-          <button id="edit-student-btn" class="action-btn">Sửa thông tin học sinh</button>
-        </div>
-        <div id="add-student-form" className="hidden">
+            </div>
+            <br></br><br></br>
+        <div className="">
+        <h2>Nhận học sinh</h2>
+       
+    <button id="add-student-btn" class="action-btn" onClick={handleClick}>Thêm học sinh</button>
+    <button id="delete-student-btn" class="action-btn" onClick={handleClick2}>Xóa học sinh</button>
+    <button id="edit-student-btn" class="action-btn" onClick={handleClick3}>Sửa thông tin học sinh</button>
+    <div id="add-student-form" class={isActive ?"":"hidden"}>
       <h2>Thêm học sinh</h2>
       <form id="student-form">
-        <label htmlFor="class-input">Lớp:</label>
-        <input type="text" id="class-input" required="" />
-        <label htmlFor="name-input">Tên học sinh:</label>
-        <input type="text" id="name-input" required="" />
-        <label htmlFor="gender-input">Giới tính:</label>
-        <select id="gender-input" required="">
+      <label for="class-input">Lớp:</label>
+        <input type="text" id="class-input" required></input>
+        <label for="name-input">Tên học sinh:</label>
+        <input type="text" id="name-input" required></input>
+        <label for="gender-input">Giới tính:</label>
+        <select id="gender-input" required>
           <option value="Nam">Nam</option>
           <option value="Nữ">Nữ</option>
         </select>
-        <label htmlFor="dob-input">Ngày sinh:</label>
-        <input type="date" id="dob-input" required="" />
-        <label htmlFor="address-input">Địa chỉ:</label>
-        <input type="text" id="address-input" required="" />
-        <label htmlFor="email-input">Email:</label>
-        <input type="email" id="email-input" required="" />
+        <label for="dob-input">Ngày sinh:</label>
+        <input type="date" id="dob-input" required></input>
+        <label for="address-input">Địa chỉ:</label>
+        <input type="text" id="address-input" required></input>
+        <label for="email-input">Email:</label>
+        <input type="email" id="email-input" required></input>
         <button type="submit">Thêm</button>
       </form>
     </div>
-      </div>
-  );
+    <div id="delete-student-form" class={isActive2 ?"":"hidden"}>
+      <h2>Xóa học sinh</h2>
+      <form id="delete-form">
+        <label for="delete-name-input">Tên học sinh:</label>
+        <input type="text" id="delete-name-input" required></input>
+        <label for="delete-class-input">Lớp:</label>
+        <input type="text" id="delete-class-input" required></input>
+        <button type="submit">Xóa</button>
+      </form>
+    </div>
+    <div id="edit-student-form" class={isActive3 ?"":("hidden" )}>
+      <h2>Sửa thông tin học sinh</h2>
+      <form id="edit-form">
+        <label for="edit-name-input">Tên học sinh:</label>
+        <input type="text" id="edit-name-input" required></input>
+        <label for="edit-class-input">Lớp:</label>
+        <input type="text" id="edit-class-input" required></input>
+        <label for="edit-gender-input">Giới tính:</label>
+        <select id="edit-gender-input" required>
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+        </select>
+        <label for="edit-dob-input">Ngày sinh:</label>
+        <input type="date" id="edit-dob-input" required></input>
+        <label for="edit-address-input">Địa chỉ:</label>
+        <input type="text" id="edit-address-input" required></input>
+        <label for="edit-email-input">Email:</label>
+        <input type="email" id="edit-email-input" required></input>
+        <button type="submit">Sửa</button>
+      </form>
+    </div>
+    <table id="student-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Lớp</th>
+          <th>Tên học sinh</th>
+          <th>Giới tính</th>
+          <th>Ngày sinh</th>
+          <th>Địa chỉ</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="student-list">
+      </tbody>
+    </table>
+        </div>
+        </div>
+        )
 }
 
-  export default Addstudent;
+export default Addstudent
