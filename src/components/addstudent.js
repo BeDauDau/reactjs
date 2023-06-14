@@ -2,6 +2,9 @@ import React, {useEffect, useState} from "react";
 import "./addstudent.css"
 import {Link} from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import axios from "axios"
+import { getListStudent, deleteStudent, updateStudent, createNewStudent } from '../services'
+import { Table, Button, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
   
 const Addstudent = () => {
   const [isActive, setIsActive] = useState(false);
@@ -21,10 +24,18 @@ const Addstudent = () => {
   const handleClick3 = event => {
     // 👇️ toggle isActive state on click
     setIsActive3(current => !current);
+  
   };
+  const [listStudent, setListStudent] = React.useState([])
+
+  React.useEffect(()=>{
+      getListStudent().then(res => {
+          setListStudent(res.data)
+      })
+  },[])
     return (
 
-        <div className="">
+        <div className="" > 
             <div id="header">
           <ul id="nav">
             <li><a href="/login">Home Page</a></li>
@@ -128,16 +139,24 @@ const Addstudent = () => {
     <table id="student-table">
       <thead>
         <tr>
-          <th>STT</th>
           <th>Lớp</th>
           <th>Tên học sinh</th>
           <th>Giới tính</th>
           <th>Ngày sinh</th>
-          <th>Địa chỉ</th>
           <th>Email</th>
         </tr>
       </thead>
       <tbody id="student-list">
+      {listStudent ? listStudent.map(data => 
+                    <tr>
+                        <td>{data.class}</td>
+                        <td>{data.fullname}</td>
+                        <td>{data.gender}</td>
+                        <td>{data.dob}</td>
+
+                    </tr>
+                )
+                : ""}
       </tbody>
     </table>
         </div>
