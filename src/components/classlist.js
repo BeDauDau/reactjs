@@ -2,9 +2,26 @@ import React, {useEffect, useState} from "react";
 import "./classlist.css"
 import {Link} from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
-  
+import axios from "axios"  
+
+const config = {
+  headers: {  
+      Authorization: "Bearer "+ localStorage.getItem("token"),
+  }
+}
+
 const Classlist = () => {
-  
+  const [listStudent, setListStudent] = React.useState([])
+
+    React.useEffect(()=>{
+      
+      axios.get('http://localhost:5000/api/v1/classes/',config).then(res => {
+            setListStudent(res.data.data)
+        })
+    },[])
+
+
+
     return (
 
         <div className="container">
@@ -66,7 +83,9 @@ const Classlist = () => {
           <th>Sĩ số</th>
         </tr>
       </thead>
-      <tbody id="class-size-body"></tbody>
+      <tbody id="class-size-body">
+
+      </tbody>
     </table>
 
     <h2>Danh sách lớp:</h2>
@@ -80,7 +99,9 @@ const Classlist = () => {
           <th>Địa chỉ</th>
         </tr>
       </thead>
-      <tbody id="student-list-body"></tbody>
+      <tbody id="student-list">
+
+      </tbody>
     </table>
   </div>
         </div>

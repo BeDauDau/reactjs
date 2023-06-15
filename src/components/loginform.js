@@ -12,26 +12,27 @@ const LoginForm = () => {
     
         // Handle validations
         axios
-      .post('http://localhost:5000/api/v1/auth/login', {
-        username: email,
-        password: password,
-      })
-      .then((response) => {
-        if (response.data.success) {
-          localStorage.setItem('user', JSON.stringify(response.data));
-          window.location.href = '/login';
-        } else {
-          // handle error
-          alert('Login failed');
-        }
-        // Handle response
-      })
-      .catch((error) => {
-        // handle network error
-        console.error(error);
-        // display a message to the user
-        alert('Cannot login');
-      });
+          .post("http://localhost:5000/api/v1/auth/login", { "username": email,"password": password })
+          .then(response => {
+            console.log(response)
+            const token = response.data.data.token;
+            localStorage.setItem("token", token);
+            //console.log(token)
+            if(response.data.success===true){
+                window.location.href = "/login";
+            }else {
+                // handle error
+                alert("Login failed");
+                }
+            // Handle response
+          })
+          .catch((error) => {
+            // handle network error
+            console.error(error);
+            // display a message to the user
+            alert("Cannot login");
+            });
+          
       }
     
 

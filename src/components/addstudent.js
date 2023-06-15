@@ -5,7 +5,13 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import axios from "axios"
 import { getListStudent, deleteStudent, updateStudent, createNewStudent } from '../services'
 import { Table, Button, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-  
+
+const config = {
+    headers: {  
+        Authorization: "Bearer "+ localStorage.getItem("token"),
+    }
+  }
+
 const Addstudent = () => {
   const [isActive, setIsActive] = useState(false);
 
@@ -26,13 +32,14 @@ const Addstudent = () => {
     setIsActive3(current => !current);
   
   };
-  const [listStudent, setListStudent] = React.useState([])
+const [listStudent, setListStudent] = React.useState([])
 
-  React.useEffect(()=>{
-      getListStudent().then(res => {
-          setListStudent(res.data)
-      })
-  },[])
+    React.useEffect(()=>{
+      
+      axios.get('http://localhost:5000/api/v1/students/',config).then(res => {
+            setListStudent(res.data.data)
+        })
+    },[])
     return (
 
         <div className="" > 
@@ -139,6 +146,7 @@ const Addstudent = () => {
     <table id="student-table">
       <thead>
         <tr>
+            <th>ID</th>
           <th>Lớp</th>
           <th>Tên học sinh</th>
           <th>Giới tính</th>
@@ -149,10 +157,12 @@ const Addstudent = () => {
       <tbody id="student-list">
       {listStudent ? listStudent.map(data => 
                     <tr>
+                        <td>{data._id}</td>
                         <td>{data.class}</td>
                         <td>{data.fullname}</td>
                         <td>{data.gender}</td>
                         <td>{data.dob}</td>
+                        <td>{data.email}</td>
 
                     </tr>
                 )
